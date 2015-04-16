@@ -1,0 +1,36 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <vector>
+#include <unistd.h>
+#include <getopt.h>
+
+#include <iostream>
+#include <pcl/io/pcd_io.h>
+#include <pcl/point_types.h>
+#include <pcl/registration/icp.h>
+#include <pcl/filters/filter.h>
+#include <pcl/filters/voxel_grid.h>
+#include <pcl/registration/transforms.h>
+#include <pcl/registration/gicp.h>
+struct option long_opts [] =
+  {
+    {},
+    {0, 0, 0, 0}
+  };
+
+int decode_switches (int argc, char ** argv);
+
+
+int
+main (int argc, char ** argv)
+{
+  decode_switches (argc, argv);
+
+  return 0;
+}
+
+int decode_switches (int argc, char ** argv)
+{
+
+  
+}
