@@ -358,6 +358,7 @@ CMakeFiles/semi_auto_gicp.dir/semi_auto_gicp.cpp.o: /usr/include/vtk-5.8/vtkArra
 CMakeFiles/semi_auto_gicp.dir/semi_auto_gicp.cpp.o: /usr/include/vtk-5.8/vtkArrayIteratorTemplate.h
 CMakeFiles/semi_auto_gicp.dir/semi_auto_gicp.cpp.o: /usr/include/vtk-5.8/vtkArrayIteratorTemplate.txx
 CMakeFiles/semi_auto_gicp.dir/semi_auto_gicp.cpp.o: /usr/include/vtk-5.8/vtkArrayIteratorTemplateImplicit.txx
+CMakeFiles/semi_auto_gicp.dir/semi_auto_gicp.cpp.o: /usr/include/vtk-5.8/vtkCallbackCommand.h
 CMakeFiles/semi_auto_gicp.dir/semi_auto_gicp.cpp.o: /usr/include/vtk-5.8/vtkCell.h
 CMakeFiles/semi_auto_gicp.dir/semi_auto_gicp.cpp.o: /usr/include/vtk-5.8/vtkCellArray.h
 CMakeFiles/semi_auto_gicp.dir/semi_auto_gicp.cpp.o: /usr/include/vtk-5.8/vtkCellData.h

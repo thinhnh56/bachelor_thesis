@@ -17,6 +17,8 @@ unistd.h
 -
 getopt.h
 -
+string.h
+-
 iostream
 -
 pcl/io/pcd_io.h
@@ -46,6 +48,18 @@ vtkRenderWindowInteractor.h
 vtkInteractorStyleSwitch.h
 -
 vtkActor.h
+-
+vtkInteractorStyleTrackballCamera.h
+-
+vtkObjectFactory.h
+-
+vtkPolyDataMapper.h
+-
+vtkRenderer.h
+-
+vtkCommand.h
+-
+vtkCallbackCommand.h
 -
 
 /usr/include/eigen3/Eigen/Cholesky
@@ -2505,6 +2519,10 @@ vtkObjectFactory.h
 /usr/include/vtk-5.8/vtkArrayIteratorTemplateImplicit.txx
 vtkArrayIteratorTemplate.txx
 /usr/include/vtk-5.8/vtkArrayIteratorTemplate.txx
+
+/usr/include/vtk-5.8/vtkCallbackCommand.h
+vtkCommand.h
+/usr/include/vtk-5.8/vtkCommand.h
 
 /usr/include/vtk-5.8/vtkCell.h
 vtkObject.h

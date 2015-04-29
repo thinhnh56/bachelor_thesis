@@ -3,6 +3,7 @@
 #include <vector>
 #include <unistd.h>
 #include <getopt.h>
+#include <string.h>
 
 #include <iostream>
 #include <pcl/io/pcd_io.h>
@@ -20,6 +21,12 @@
 #include <vtkRenderWindowInteractor.h>
 #include <vtkInteractorStyleSwitch.h>
 #include <vtkActor.h>
+#include <vtkInteractorStyleTrackballCamera.h>
+#include <vtkObjectFactory.h>
+#include <vtkPolyDataMapper.h>
+#include <vtkRenderer.h>
+#include <vtkCommand.h>
+#include <vtkCallbackCommand.h>
 
 typedef pcl::PointXYZ PointXYZ;
 typedef pcl::PointXYZRGB PointRGB;
@@ -32,8 +39,7 @@ typedef CloudRGB::Ptr CloudRGBPtr;
 typedef CloudNormal::Ptr CloudNormalPtr;
 
 //enum ICPTYPE = {GENERIALIZED_ICP = 0, DEFAULT_ICP = 1, NORMAL_ICP = 2};
-
-struct option long_opts [] =
+/*struct option long_opts [] =
   {
     {"voxel_leaf_size", required_argument, 0, 'a'},
     {"icp_epsilon", required_argument, 0, 'b'},
@@ -42,11 +48,11 @@ struct option long_opts [] =
     {"icp_type", required_argument, 0, 'e'},
     {0, 0, 0, 0}
   };
-
-float voxel_leaf_size;
-float icp_epsilon;
-float icp_max_distance;
-int icp_max_ite;
+*/
+const float voxel_leaf_size = 0.1;
+const float icp_epsilon = 1e-16;
+const float icp_max_distance = 0.1;
+const int icp_max_ite = 2000;
 //ICPTYPE icp_type;
 int decode_switches (int argc, char ** argv);
 Eigen::Matrix4f align (CloudRGBPtr source,
@@ -55,10 +61,13 @@ Eigen::Matrix4f align (CloudRGBPtr source,
 		       double max_ite,
 		       double max_distance);
 
+void keyboard_event (vtkObject* caller, long unsigned int eventId, void *client_data, void* call_data);
 
 int
 main (int argc, char ** argv)
 {
+  //confirm to merge point cloud to global data
+  bool merge_confirm = false;
   /*----------load data--------------------*/
   //all input point clouds will be stored here
   std::vector <CloudRGBPtr> cloud_data;
@@ -105,17 +114,25 @@ main (int argc, char ** argv)
   visualizer->addCoordinateSystem (0.4, "init_coord", init_viewport);
   visualizer->addCoordinateSystem (0.4, "match_coord", match_viewport);
   visualizer->addCoordinateSystem (0.4, "total_coord", total_viewport);
-  // Initialize new interactor style and set it to TrackballCamera
-  vtkSmartPointer<vtkInteractorStyleSwitch> interactor_style = vtkSmartPointer<vtkInteractorStyleSwitch>::New();
-  interactor_style->SetCurrentStyleToTrackballCamera ();
-  // Change InteractorStyle to vtkInteractorStyleSwitch
-  visualizer->setupInteractor (visualizer->getRenderWindow()->GetInteractor(), visualizer->getRenderWindow(), interactor_style);
 
+  //custom the keypress event
+  vtkSmartPointer<vtkInteractorStyleSwitch> style = vtkSmartPointer<vtkInteractorStyleSwitch>::New();
+  style->SetCurrentStyleToTrackballCamera ();
+
+  visualizer->setupInteractor(visualizer->getRenderWindow()->GetInteractor(), visualizer->getRenderWindow(), style);
+
+  //custom keyboard event to confirm merge to total point cloud
+  vtkSmartPointer<vtkCallbackCommand> custom_key_call_back =
+    vtkSmartPointer<vtkCallbackCommand>::New ();
+  custom_key_call_back->SetCallback (keyboard_event);
+  custom_key_call_back->SetClientData (&merge_confirm);
+  visualizer->getRenderWindow ()->GetInteractor ()->AddObserver (vtkCommand::KeyPressEvent, custom_key_call_back);
+  
   /*-----------end set up visualizer----*/
-
+  
   
   /*-----------registration-------------*/
-  CloudRGBPtr source (new CloudRGB);
+  CloudRGBPtr source (new CloudRGB); 
   CloudRGBPtr target (new CloudRGB);
   //store result transformation from i+1 to i, all will transform to coordinate of first point cloud
   CloudRGBPtr local_result (new CloudRGB);
@@ -127,7 +144,7 @@ main (int argc, char ** argv)
   //set up voxel grid for sampling cloud
   pcl::VoxelGrid<PointRGB> voxel_grid;
   voxel_grid.setLeafSize (voxel_leaf_size, voxel_leaf_size, voxel_leaf_size);
-  
+  *final_cloud = *cloud_data[0];
   for (int i = 0; i<cloud_data.size () - 1; i++)
     {
       restart = true;
@@ -187,12 +204,20 @@ main (int argc, char ** argv)
 	  visualizer->addPointCloud (local_result, "local_result", match_viewport);
 	  visualizer->spin ();
 	  /*--------end align with icp---------*/
+
 	  
-	  //user confirmation
-	  //if yes then merge and continue or restart the registration process
+	  if (merge_confirm)
+	    {
+	      restart = false;
+	      //if yes then merge and continue or restart the registration process
+	      *final_cloud += *cloud_data[i+1];
+	      }
+	  visualizer->removePointCloud ("final_result");
+	  visualizer->addPointCloud (final_cloud, "final_result", total_viewport);
+	  visualizer->spin();
 	}
     }
-  /*-----------end registration------------*/
+  /*-----------End registration------------*/
   return 0;
 }
 
@@ -237,31 +262,32 @@ align (CloudRGBPtr source,
 {
 
   Eigen::Matrix4f result_transformation;
-  // switch (icp_type)
-  //   {
-  //   case GENERIALIZED_ICP:
-  //     pcl::GeneralizedIterativeClosestPoint< PointRGB, PointRGB > icp;
-  //     break;
-  //   case NORMAL_ICP:
-  //     pcl::IterativeClosestPointWithNormals< PointRGB, PointRGB > icp;
-  //     break;
-  //   case DEFAULT_ICP:
-  //     pcl::IterativeClosestPoint< PointRGB, PointRGB > icp;
-  //     break;
-  //   default:
-  //     
-  //     break;
-  //   }
-  //  pcl::GeneralizedIterativeClosestPoint< PointRGB, PointRGB > icp;
-  //pcl::IterativeClosestPointWithNormals< PointRGB, PointRGB > icp;
-  pcl::IterativeClosestPoint< PointRGB, PointRGB > icp;
+  pcl::GeneralizedIterativeClosestPoint< PointRGB, PointRGB > icp;
   icp.setMaximumIterations (max_ite);
-  icp.setMaxCorrespondenceDistance (0.1);
-  icp.setTransformationEpsilon (1e-16);
+  icp.setMaxCorrespondenceDistance (max_distance);
+  icp.setTransformationEpsilon (epsilon);
   icp.setInputSource (source);
   icp.setInputTarget (target);
   
   CloudRGB temp;
   icp.align (temp);
   return icp.getFinalTransformation ();
+}
+
+void keyboard_event (vtkObject* caller, long unsigned int eventId, void *client_data, void* call_data)
+{
+  vtkRenderWindowInteractor *ren = static_cast<vtkRenderWindowInteractor*>(caller);
+  bool *merge_confirm = (bool *)client_data;
+
+  if (strcmp (ren->GetKeySym(), "y") == 0)
+    {
+      printf ("key y pressed\n");
+      *merge_confirm = true;
+    }
+  if (strcmp (ren->GetKeySym(), "n") == 0)
+    {
+      printf ("key n pressed\n");
+      *merge_confirm = false;
+    }
+  printf ("keyboard callback with %s\n", ren->GetKeySym());
 }

@@ -359,6 +359,7 @@ CMakeFiles/semi_auto_gicp.dir/semi_auto_gicp.cpp.o
  /usr/include/vtk-5.8/vtkArrayIteratorTemplate.h
  /usr/include/vtk-5.8/vtkArrayIteratorTemplate.txx
  /usr/include/vtk-5.8/vtkArrayIteratorTemplateImplicit.txx
+ /usr/include/vtk-5.8/vtkCallbackCommand.h
  /usr/include/vtk-5.8/vtkCell.h
  /usr/include/vtk-5.8/vtkCellArray.h
  /usr/include/vtk-5.8/vtkCellData.h
