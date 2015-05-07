@@ -53,38 +53,38 @@ CMAKE_SOURCE_DIR = /home/thinh/workspace/life_time/bachelor_thesis_2.0/src
 CMAKE_BINARY_DIR = /home/thinh/workspace/life_time/bachelor_thesis_2.0/src/build
 
 #=============================================================================
-# Target rules for target CMakeFiles/semi_auto_gicp.dir
+# Target rules for target CMakeFiles/error_estimate.dir
 
 # All Build rule for target.
-CMakeFiles/semi_auto_gicp.dir/all:
-	$(MAKE) -f CMakeFiles/semi_auto_gicp.dir/build.make CMakeFiles/semi_auto_gicp.dir/depend
-	$(MAKE) -f CMakeFiles/semi_auto_gicp.dir/build.make CMakeFiles/semi_auto_gicp.dir/build
+CMakeFiles/error_estimate.dir/all:
+	$(MAKE) -f CMakeFiles/error_estimate.dir/build.make CMakeFiles/error_estimate.dir/depend
+	$(MAKE) -f CMakeFiles/error_estimate.dir/build.make CMakeFiles/error_estimate.dir/build
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/thinh/workspace/life_time/bachelor_thesis_2.0/src/build/CMakeFiles  1
-	@echo "Built target semi_auto_gicp"
-.PHONY : CMakeFiles/semi_auto_gicp.dir/all
+	@echo "Built target error_estimate"
+.PHONY : CMakeFiles/error_estimate.dir/all
 
 # Include target in all.
-all: CMakeFiles/semi_auto_gicp.dir/all
+all: CMakeFiles/error_estimate.dir/all
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/semi_auto_gicp.dir/rule: cmake_check_build_system
+CMakeFiles/error_estimate.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/thinh/workspace/life_time/bachelor_thesis_2.0/src/build/CMakeFiles 1
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/semi_auto_gicp.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/error_estimate.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/thinh/workspace/life_time/bachelor_thesis_2.0/src/build/CMakeFiles 0
-.PHONY : CMakeFiles/semi_auto_gicp.dir/rule
+.PHONY : CMakeFiles/error_estimate.dir/rule
 
 # Convenience name for target.
-semi_auto_gicp: CMakeFiles/semi_auto_gicp.dir/rule
-.PHONY : semi_auto_gicp
+error_estimate: CMakeFiles/error_estimate.dir/rule
+.PHONY : error_estimate
 
 # clean rule for target.
-CMakeFiles/semi_auto_gicp.dir/clean:
-	$(MAKE) -f CMakeFiles/semi_auto_gicp.dir/build.make CMakeFiles/semi_auto_gicp.dir/clean
-.PHONY : CMakeFiles/semi_auto_gicp.dir/clean
+CMakeFiles/error_estimate.dir/clean:
+	$(MAKE) -f CMakeFiles/error_estimate.dir/build.make CMakeFiles/error_estimate.dir/clean
+.PHONY : CMakeFiles/error_estimate.dir/clean
 
 # clean rule for target.
-clean: CMakeFiles/semi_auto_gicp.dir/clean
+clean: CMakeFiles/error_estimate.dir/clean
 .PHONY : clean
 
 #=============================================================================

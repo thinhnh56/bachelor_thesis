@@ -99,41 +99,41 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named semi_auto_gicp
+# Target rules for targets named error_estimate
 
 # Build rule for target.
-semi_auto_gicp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 semi_auto_gicp
-.PHONY : semi_auto_gicp
+error_estimate: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 error_estimate
+.PHONY : error_estimate
 
 # fast build rule for target.
-semi_auto_gicp/fast:
-	$(MAKE) -f CMakeFiles/semi_auto_gicp.dir/build.make CMakeFiles/semi_auto_gicp.dir/build
-.PHONY : semi_auto_gicp/fast
+error_estimate/fast:
+	$(MAKE) -f CMakeFiles/error_estimate.dir/build.make CMakeFiles/error_estimate.dir/build
+.PHONY : error_estimate/fast
 
-semi_auto_gicp.o: semi_auto_gicp.cpp.o
-.PHONY : semi_auto_gicp.o
+error_estimate.o: error_estimate.cpp.o
+.PHONY : error_estimate.o
 
 # target to build an object file
-semi_auto_gicp.cpp.o:
-	$(MAKE) -f CMakeFiles/semi_auto_gicp.dir/build.make CMakeFiles/semi_auto_gicp.dir/semi_auto_gicp.cpp.o
-.PHONY : semi_auto_gicp.cpp.o
+error_estimate.cpp.o:
+	$(MAKE) -f CMakeFiles/error_estimate.dir/build.make CMakeFiles/error_estimate.dir/error_estimate.cpp.o
+.PHONY : error_estimate.cpp.o
 
-semi_auto_gicp.i: semi_auto_gicp.cpp.i
-.PHONY : semi_auto_gicp.i
+error_estimate.i: error_estimate.cpp.i
+.PHONY : error_estimate.i
 
 # target to preprocess a source file
-semi_auto_gicp.cpp.i:
-	$(MAKE) -f CMakeFiles/semi_auto_gicp.dir/build.make CMakeFiles/semi_auto_gicp.dir/semi_auto_gicp.cpp.i
-.PHONY : semi_auto_gicp.cpp.i
+error_estimate.cpp.i:
+	$(MAKE) -f CMakeFiles/error_estimate.dir/build.make CMakeFiles/error_estimate.dir/error_estimate.cpp.i
+.PHONY : error_estimate.cpp.i
 
-semi_auto_gicp.s: semi_auto_gicp.cpp.s
-.PHONY : semi_auto_gicp.s
+error_estimate.s: error_estimate.cpp.s
+.PHONY : error_estimate.s
 
 # target to generate assembly for a file
-semi_auto_gicp.cpp.s:
-	$(MAKE) -f CMakeFiles/semi_auto_gicp.dir/build.make CMakeFiles/semi_auto_gicp.dir/semi_auto_gicp.cpp.s
-.PHONY : semi_auto_gicp.cpp.s
+error_estimate.cpp.s:
+	$(MAKE) -f CMakeFiles/error_estimate.dir/build.make CMakeFiles/error_estimate.dir/error_estimate.cpp.s
+.PHONY : error_estimate.cpp.s
 
 # Help Target
 help:
@@ -142,11 +142,11 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
+	@echo "... error_estimate"
 	@echo "... rebuild_cache"
-	@echo "... semi_auto_gicp"
-	@echo "... semi_auto_gicp.o"
-	@echo "... semi_auto_gicp.i"
-	@echo "... semi_auto_gicp.s"
+	@echo "... error_estimate.o"
+	@echo "... error_estimate.i"
+	@echo "... error_estimate.s"
 .PHONY : help
 
 
