@@ -53,13 +53,48 @@ CMAKE_SOURCE_DIR = /home/thinh/workspace/life_time/bachelor_thesis_2.0/src
 CMAKE_BINARY_DIR = /home/thinh/workspace/life_time/bachelor_thesis_2.0/src/build
 
 #=============================================================================
+# Target rules for target CMakeFiles/auto.dir
+
+# All Build rule for target.
+CMakeFiles/auto.dir/all:
+	$(MAKE) -f CMakeFiles/auto.dir/build.make CMakeFiles/auto.dir/depend
+	$(MAKE) -f CMakeFiles/auto.dir/build.make CMakeFiles/auto.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/thinh/workspace/life_time/bachelor_thesis_2.0/src/build/CMakeFiles  1
+	@echo "Built target auto"
+.PHONY : CMakeFiles/auto.dir/all
+
+# Include target in all.
+all: CMakeFiles/auto.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/auto.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/thinh/workspace/life_time/bachelor_thesis_2.0/src/build/CMakeFiles 1
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/auto.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/thinh/workspace/life_time/bachelor_thesis_2.0/src/build/CMakeFiles 0
+.PHONY : CMakeFiles/auto.dir/rule
+
+# Convenience name for target.
+auto: CMakeFiles/auto.dir/rule
+.PHONY : auto
+
+# clean rule for target.
+CMakeFiles/auto.dir/clean:
+	$(MAKE) -f CMakeFiles/auto.dir/build.make CMakeFiles/auto.dir/clean
+.PHONY : CMakeFiles/auto.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/auto.dir/clean
+.PHONY : clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/error_estimate.dir
 
 # All Build rule for target.
 CMakeFiles/error_estimate.dir/all:
 	$(MAKE) -f CMakeFiles/error_estimate.dir/build.make CMakeFiles/error_estimate.dir/depend
 	$(MAKE) -f CMakeFiles/error_estimate.dir/build.make CMakeFiles/error_estimate.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/thinh/workspace/life_time/bachelor_thesis_2.0/src/build/CMakeFiles  1
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/thinh/workspace/life_time/bachelor_thesis_2.0/src/build/CMakeFiles  2
 	@echo "Built target error_estimate"
 .PHONY : CMakeFiles/error_estimate.dir/all
 
@@ -85,6 +120,41 @@ CMakeFiles/error_estimate.dir/clean:
 
 # clean rule for target.
 clean: CMakeFiles/error_estimate.dir/clean
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/semi_auto_gicp.dir
+
+# All Build rule for target.
+CMakeFiles/semi_auto_gicp.dir/all:
+	$(MAKE) -f CMakeFiles/semi_auto_gicp.dir/build.make CMakeFiles/semi_auto_gicp.dir/depend
+	$(MAKE) -f CMakeFiles/semi_auto_gicp.dir/build.make CMakeFiles/semi_auto_gicp.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/thinh/workspace/life_time/bachelor_thesis_2.0/src/build/CMakeFiles  3
+	@echo "Built target semi_auto_gicp"
+.PHONY : CMakeFiles/semi_auto_gicp.dir/all
+
+# Include target in all.
+all: CMakeFiles/semi_auto_gicp.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/semi_auto_gicp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/thinh/workspace/life_time/bachelor_thesis_2.0/src/build/CMakeFiles 1
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/semi_auto_gicp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/thinh/workspace/life_time/bachelor_thesis_2.0/src/build/CMakeFiles 0
+.PHONY : CMakeFiles/semi_auto_gicp.dir/rule
+
+# Convenience name for target.
+semi_auto_gicp: CMakeFiles/semi_auto_gicp.dir/rule
+.PHONY : semi_auto_gicp
+
+# clean rule for target.
+CMakeFiles/semi_auto_gicp.dir/clean:
+	$(MAKE) -f CMakeFiles/semi_auto_gicp.dir/build.make CMakeFiles/semi_auto_gicp.dir/clean
+.PHONY : CMakeFiles/semi_auto_gicp.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/semi_auto_gicp.dir/clean
 .PHONY : clean
 
 #=============================================================================

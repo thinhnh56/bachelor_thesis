@@ -218,19 +218,23 @@ main (int argc, char ** argv)
 	  pcl::visualization::CloudActorMapPtr cloud_actor_map = visualizer->getCloudActorMap ();
 	  vtkSmartPointer<vtkMatrix4x4> init_transform = cloud_actor_map->at("source").viewpoint_transformation_;
 
-	  Eigen::Matrix4f init_transform_matrix;
+	  Eigen::Matrix4f init_transform_matrix = Eigen::Matrix4f::Identity ();
 	  pcl::visualization::PCLVisualizer::convertToEigenMatrix (init_transform, init_transform_matrix);
-
+	  pcl::copyPointCloud (*cloud_sampled[i+1], *source);
+	  pcl::copyPointCloud (*cloud_sampled[i], *target);
 	  //align using icp
-	  transformation[i] = align (cloud_sampled[i+1],
-				     cloud_sampled[i],
+	  pcl::transformPointCloud (*source, *source, init_transform_matrix);
+	  transformation[i] = align (source,
+				     target,
 				     icp_epsilon,
 				     icp_max_ite,
 				     icp_max_distance,
-				     init_transform_matrix);
-	  
-	  *source = *cloud_data[i+1];
-	  *target = *cloud_data[i];
+				     Eigen::Matrix4f::Identity ());
+	  std::cout << transformation[i] << "\n";
+	  pcl::copyPointCloud (*cloud_data[i+1], *source);
+	  pcl::copyPointCloud (*cloud_data[i], *target);
+	  pcl::transformPointCloud (*source, *source, init_transform_matrix);
+	  //pcl::transformPointCloud (*source, *source, transformation[i]);
 	  pcl::transformPointCloud (*source, *source, transformation[i]);
 	  //pcl::visualization::PointCloudColorHandlerCustom<PointRGB> local_target_color (source, 0, 255, 0); 
 	  //pcl::visualization::PointCloudColorHandlerCustom<PointRGB> local_source_color (target, 255, 0, 0);
@@ -240,7 +244,7 @@ main (int argc, char ** argv)
 	  visualizer->addPointCloud (target, "local_target", match_viewport);
 	  visualizer->spin ();
 	  /*--------end align with icp---------*/
-
+	  transformation[i] = transformation[i] * init_transform_matrix;
 	  
 	  if (merge_confirm)
 	    {
@@ -257,7 +261,6 @@ main (int argc, char ** argv)
 	      *final_cloud = *temp;
 	      printf ("final after filter %zu\n", final_cloud->points.size ());
 	    }
-	  visualizer->removePointCloud ("review_final");
 	  visualizer->removePointCloud ("final_result");
 	  visualizer->addPointCloud (final_cloud, "final_result", total_viewport);
 	  visualizer->spin();
@@ -307,6 +310,7 @@ align (CloudRGBPtr source,
        double max_distance,
        Eigen::Matrix4f init_transform)
 {
+  printf ("aligning point cloud\n");
   //pcl::registration::CorrespondenceRejectorOneToOne::Ptr oto_rejector (new pcl::registration::CorrespondenceRejectorOneToOne);
   Eigen::Matrix4f result_transformation;
   pcl::GeneralizedIterativeClosestPoint< PointRGB, PointRGB > icp;

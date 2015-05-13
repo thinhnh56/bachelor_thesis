@@ -50,7 +50,7 @@ const float voxel_leaf_size = 0.05;
 const float icp_epsilon = 1e-16;
 const float icp_max_distance = 0.1;
 const int icp_max_ite = 1;
-const int MAXITE = 100;
+const int MAXITE = 20;
 float compute_error (CloudRGBPtr target, CloudRGBPtr source, Eigen::Matrix4f init);
 int
 main (int argc, char ** argv)
@@ -150,7 +150,7 @@ main (int argc, char ** argv)
   icp.setTransformationEpsilon (icp_epsilon);
   icp.setInputSource (source_sampled);
   icp.setInputTarget (target_sampled);
-  for (int i = 0; i<MAXITE; i++)
+  for (int i = 1; i<MAXITE; i++)
     {
       icp.align (*source_sampled, temp_transform);
       temp_transform = icp.getFinalTransformation ();

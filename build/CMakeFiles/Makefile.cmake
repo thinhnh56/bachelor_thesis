@@ -56,5 +56,7 @@ SET(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 SET(CMAKE_DEPEND_INFO_FILES
+  "CMakeFiles/auto.dir/DependInfo.cmake"
   "CMakeFiles/error_estimate.dir/DependInfo.cmake"
+  "CMakeFiles/semi_auto_gicp.dir/DependInfo.cmake"
   )

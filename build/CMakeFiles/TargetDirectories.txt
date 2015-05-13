@@ -1,1 +1,3 @@
+/home/thinh/workspace/life_time/bachelor_thesis_2.0/src/build/CMakeFiles/auto.dir
 /home/thinh/workspace/life_time/bachelor_thesis_2.0/src/build/CMakeFiles/error_estimate.dir
+/home/thinh/workspace/life_time/bachelor_thesis_2.0/src/build/CMakeFiles/semi_auto_gicp.dir

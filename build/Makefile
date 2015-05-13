@@ -99,6 +99,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named auto
+
+# Build rule for target.
+auto: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 auto
+.PHONY : auto
+
+# fast build rule for target.
+auto/fast:
+	$(MAKE) -f CMakeFiles/auto.dir/build.make CMakeFiles/auto.dir/build
+.PHONY : auto/fast
+
+#=============================================================================
 # Target rules for targets named error_estimate
 
 # Build rule for target.
@@ -110,6 +123,43 @@ error_estimate: cmake_check_build_system
 error_estimate/fast:
 	$(MAKE) -f CMakeFiles/error_estimate.dir/build.make CMakeFiles/error_estimate.dir/build
 .PHONY : error_estimate/fast
+
+#=============================================================================
+# Target rules for targets named semi_auto_gicp
+
+# Build rule for target.
+semi_auto_gicp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 semi_auto_gicp
+.PHONY : semi_auto_gicp
+
+# fast build rule for target.
+semi_auto_gicp/fast:
+	$(MAKE) -f CMakeFiles/semi_auto_gicp.dir/build.make CMakeFiles/semi_auto_gicp.dir/build
+.PHONY : semi_auto_gicp/fast
+
+auto.o: auto.cpp.o
+.PHONY : auto.o
+
+# target to build an object file
+auto.cpp.o:
+	$(MAKE) -f CMakeFiles/auto.dir/build.make CMakeFiles/auto.dir/auto.cpp.o
+.PHONY : auto.cpp.o
+
+auto.i: auto.cpp.i
+.PHONY : auto.i
+
+# target to preprocess a source file
+auto.cpp.i:
+	$(MAKE) -f CMakeFiles/auto.dir/build.make CMakeFiles/auto.dir/auto.cpp.i
+.PHONY : auto.cpp.i
+
+auto.s: auto.cpp.s
+.PHONY : auto.s
+
+# target to generate assembly for a file
+auto.cpp.s:
+	$(MAKE) -f CMakeFiles/auto.dir/build.make CMakeFiles/auto.dir/auto.cpp.s
+.PHONY : auto.cpp.s
 
 error_estimate.o: error_estimate.cpp.o
 .PHONY : error_estimate.o
@@ -135,18 +185,50 @@ error_estimate.cpp.s:
 	$(MAKE) -f CMakeFiles/error_estimate.dir/build.make CMakeFiles/error_estimate.dir/error_estimate.cpp.s
 .PHONY : error_estimate.cpp.s
 
+semi_auto_gicp.o: semi_auto_gicp.cpp.o
+.PHONY : semi_auto_gicp.o
+
+# target to build an object file
+semi_auto_gicp.cpp.o:
+	$(MAKE) -f CMakeFiles/semi_auto_gicp.dir/build.make CMakeFiles/semi_auto_gicp.dir/semi_auto_gicp.cpp.o
+.PHONY : semi_auto_gicp.cpp.o
+
+semi_auto_gicp.i: semi_auto_gicp.cpp.i
+.PHONY : semi_auto_gicp.i
+
+# target to preprocess a source file
+semi_auto_gicp.cpp.i:
+	$(MAKE) -f CMakeFiles/semi_auto_gicp.dir/build.make CMakeFiles/semi_auto_gicp.dir/semi_auto_gicp.cpp.i
+.PHONY : semi_auto_gicp.cpp.i
+
+semi_auto_gicp.s: semi_auto_gicp.cpp.s
+.PHONY : semi_auto_gicp.s
+
+# target to generate assembly for a file
+semi_auto_gicp.cpp.s:
+	$(MAKE) -f CMakeFiles/semi_auto_gicp.dir/build.make CMakeFiles/semi_auto_gicp.dir/semi_auto_gicp.cpp.s
+.PHONY : semi_auto_gicp.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... auto"
 	@echo "... edit_cache"
 	@echo "... error_estimate"
 	@echo "... rebuild_cache"
+	@echo "... semi_auto_gicp"
+	@echo "... auto.o"
+	@echo "... auto.i"
+	@echo "... auto.s"
 	@echo "... error_estimate.o"
 	@echo "... error_estimate.i"
 	@echo "... error_estimate.s"
+	@echo "... semi_auto_gicp.o"
+	@echo "... semi_auto_gicp.i"
+	@echo "... semi_auto_gicp.s"
 .PHONY : help
 
 
