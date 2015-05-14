@@ -1,0 +1,3 @@
+#! /bin/bash
+
+./auto tree/inputCloud2.pcd tree/inputCloud3.pcd
